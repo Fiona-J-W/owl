@@ -1,0 +1,46 @@
+{
+    "students": [
+        {
+            "key": {
+                "id": 1234567
+            },
+            "value": {
+                "id": {
+                    "id": 1234567
+                },
+                "name": "Max Mustermann",
+                "pseudonym": "MM",
+                "partners": [],
+                "solutions": []
+            }
+        }
+    ],
+    "solutions": [],
+    "assignments": [
+        {
+            "key": {
+                "id": 1
+            },
+            "value": {
+                "id": {
+                    "id": 1
+                },
+                "max_points": [
+                    {
+                        "key": "1",
+                        "value": 1
+                    },
+                    {
+                        "key": "2.1",
+                        "value": 5
+                    },
+                    {
+                        "key": "2.2",
+                        "value": 10
+                    }
+                ]
+            }
+        }
+    ],
+    "highest_solution_id": 0
+}

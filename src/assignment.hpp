@@ -2,11 +2,11 @@
 #define ASSIGNMENT_HPP
 
 #include <string>
-#include <unordered_map>
+#include <map>
 #include <iosfwd>
 
 #include <cereal/cereal.hpp>
-#include <cereal/types/unordered_map.hpp>
+#include <cereal/types/map.hpp>
 
 #include "id.hpp"
 
@@ -24,7 +24,7 @@ public:
 	
 private:
 	assignment_id m_id;
-	std::unordered_map<std::string, unsigned> m_max_points;
+	std::map<std::string, unsigned> m_max_points;
 };
 
 #endif

@@ -4,63 +4,81 @@
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
-#include <unordered_map>
 #include <vector>
 
 #include <cereal/cereal.hpp>
 #include <cereal/types/unordered_map.hpp>
 #include <cereal/types/vector.hpp>
 #include <cereal/archives/json.hpp>
+#include <cereal/archives/xml.hpp>
 
-namespace db {
-
-namespace {
-	[[noreturn]]
-	void not_yet_implemented(const std::string& what) {
-		std::cerr << "Error: " << what << " is not yet implemented!\n";
-		std::terminate();
-	}
-}
-
-static std::vector<student_id> student_ids;
-static std::vector<solution_id> solution_ids;
-static std::vector<assignment_id> assignment_ids;
-
-static std::unordered_map<student_id, student> students;
-static std::unordered_map<solution_id, solution> solutions;
-static std::unordered_map<assignment_id, assignment> assignments;
-
-void load(const std::string& filename) {
+void database::load(const std::string& filename) {
 	std::ifstream file{filename};
 	if(!file.is_open()) {
 		throw std::runtime_error{filename + " could not be opened"};
 	}
 	cereal::JSONInputArchive archive{file};
-	archive(
-			CEREAL_NVP(student_ids), CEREAL_NVP(solution_ids), CEREAL_NVP(assignment_ids),
-			CEREAL_NVP(students), CEREAL_NVP(solutions), CEREAL_NVP(assignments));
+	archive(cereal::make_nvp("students", m_students), cereal::make_nvp("solutions", m_solutions), 
+			cereal::make_nvp("assignments", m_assignments),
+			cereal::make_nvp("highest_solution_id", m_highest_solution_id));
 }
-void save(const std::string& filename) {
+void database::save(const std::string& filename) {
 	std::ofstream file{filename};
 	if(!file.is_open()) {
 		throw std::runtime_error{filename + " could not be opened"};
 	}
 	cereal::JSONOutputArchive archive{file};
-	archive(
-			CEREAL_NVP(student_ids), CEREAL_NVP(solution_ids), CEREAL_NVP(assignment_ids),
-			CEREAL_NVP(students), CEREAL_NVP(solutions), CEREAL_NVP(assignments));
+	archive(cereal::make_nvp("students", m_students), cereal::make_nvp("solutions", m_solutions), 
+			cereal::make_nvp("assignments", m_assignments),
+			cereal::make_nvp("highest_solution_id", m_highest_solution_id));
 }
 
-assignment& get_assignment(assignment_id) {
-	not_yet_implemented("get_assignment");
+assignment& database::get_assignment(assignment_id id) {
+	return m_assignments.at(id);
 }
 
-student& get_student(student_id) {
-	not_yet_implemented("get_student");
+student& database::get_student(student_id id) {
+	return m_students.at(id);
 }
 
-solution& get_solution(solution_id) {
-	not_yet_implemented("get_solution");
+solution& database::get_solution(solution_id id) {
+	return m_solutions.at(id);
 }
 
+const assignment& database::get_assignment(assignment_id id) const {
+	return m_assignments.at(id);
 }
+
+const student& database::get_student(student_id id) const {
+	return m_students.at(id);
+}
+
+const solution& database::get_solution(solution_id id) const {
+	return m_solutions.at(id);
+}
+
+void database::add_assignment(assignment new_assignment) {
+	if (m_assignments.count(new_assignment.id())) {
+		throw std::invalid_argument{"there is already an assignment with this id"};
+	}
+	m_assignments.insert(std::make_pair(new_assignment.id(), std::move(new_assignment)));
+}
+
+void database::add_student(student new_student) {
+	if (m_students.count(new_student.id())) {
+		throw std::invalid_argument{"there is already a student with this id"};
+	}
+	m_students.insert(std::make_pair(new_student.id(), std::move(new_student)));
+}
+
+void database::add_solution(solution new_solution) {
+	if (m_solutions.count(new_solution.id())) {
+		throw std::invalid_argument{"there is already a solution with this id"};
+	}
+	m_solutions.insert(std::make_pair(new_solution.id(), std::move(new_solution)));
+}
+
+solution_id database::new_solution_id() {
+	return solution_id{++m_highest_solution_id};
+}
+
