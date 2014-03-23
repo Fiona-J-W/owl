@@ -23,6 +23,7 @@ public:
 			std::vector<student_id> partners = std::vector<student_id>{});
 	
 	const std::string& name() const {return m_name;}
+	const std::string& pseudonym() const {return m_pseudonym;}
 	student_id id() const {return m_id;}
 	unsigned current_points(const database& db) const;
 	

@@ -9,8 +9,8 @@
 template<typename T>
 class reference {
 public:
-	static_assert(std::is_same<T, typename std::decay<T>::type>(),
-			"T must be a fully decayed type");
+	static_assert(std::is_same<T, typename std::remove_reference<T>::type>(),
+			"T must not be a reference-type");
 	
 	// there is no reasonable default-value, so:
 	reference() = delete;

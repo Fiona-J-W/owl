@@ -4,9 +4,10 @@
 #include <sstream>
 
 #include "database.hpp"
+#include "html_gen.hpp"
 
 int main(int argc, char** argv) try {
-	if(argc != 2) return 1;
+	if(argc != 3) return 1;
 	
 	database db{argv[1]};
 	
@@ -15,6 +16,8 @@ int main(int argc, char** argv) try {
 	//db::add_assignment(std::move(asst));
 	//student stud{student_id{1234567}, "Max Mustermann", "MM"};
 	//db::add_student(std::move(stud));
+	
+	generate_html(db, argv[2]);
 	
 	db.save(argv[1]);
 } catch(std::runtime_error& e) {

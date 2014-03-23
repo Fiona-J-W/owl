@@ -16,6 +16,7 @@ public:
 	assignment(std::istream& stream);
 	
 	assignment_id id() const {return m_id;}
+	unsigned max_total_points() const {return m_max_total_points;}
 	
 	template<class Archive>
 	void serialize(Archive & archive) {
@@ -25,6 +26,9 @@ public:
 private:
 	assignment_id m_id;
 	std::map<std::string, unsigned> m_max_points;
+	unsigned m_max_total_points = 0;
+	
+	void calculate_max_total_points();
 };
 
 #endif

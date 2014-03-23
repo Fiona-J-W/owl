@@ -12,6 +12,8 @@
 #include <cereal/archives/json.hpp>
 #include <cereal/archives/xml.hpp>
 
+
+
 void database::load(const std::string& filename) {
 	std::ifstream file{filename};
 	if(!file.is_open()) {
@@ -76,6 +78,30 @@ void database::add_solution(solution new_solution) {
 		throw std::invalid_argument{"there is already a solution with this id"};
 	}
 	m_solutions.insert(std::make_pair(new_solution.id(), std::move(new_solution)));
+}
+
+std::vector<reference<const student>> database::get_student_list() const {
+	std::vector<reference<const student>> returnlist;
+	for(const auto& student: m_students) {
+		returnlist.emplace_back(student.second);
+	}
+	return returnlist;
+}
+
+std::vector<reference<student>> database::get_student_list() {
+	std::vector<reference<student>> returnlist;
+	for(auto& student: m_students) {
+		returnlist.emplace_back(student.second);
+	}
+	return returnlist;
+}
+
+unsigned database::max_total_points() const {
+	unsigned points = 0;
+	for(const auto& x: m_assignments) {
+		points += x.second.max_total_points();
+	}
+	return points;
 }
 
 solution_id database::new_solution_id() {

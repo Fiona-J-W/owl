@@ -6,6 +6,7 @@
 
 #include "assignment.hpp"
 #include "id.hpp"
+#include "reference.hpp"
 #include "solution.hpp"
 #include "student.hpp"
 
@@ -27,6 +28,11 @@ public:
 	void add_assignment(assignment new_assignment);
 	void add_student(student new_student);
 	void add_solution(solution new_solution);
+	
+	std::vector<reference<const student>> get_student_list() const;
+	std::vector<reference<student>> get_student_list();
+	
+	unsigned max_total_points() const;
 	
 	solution_id new_solution_id();
 private:

@@ -24,4 +24,12 @@ assignment::assignment(std::istream& stream) {
 		auto points = std::stoul(line.substr(split_point+1));
 		m_max_points.insert(std::make_pair(std::move(id), points));
 	}
+	calculate_max_total_points();
+}
+
+void assignment::calculate_max_total_points() {
+	m_max_total_points = 0;
+	for(const auto& x: m_max_points) {
+		m_max_total_points += x.second;
+	}
 }

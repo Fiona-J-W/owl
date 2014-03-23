@@ -14,6 +14,7 @@ TARGET = ../bin/gradegen
 OBJECTS = \
 	../build/assignment.o \
 	../build/database.o \
+	../build/html_gen.o \
 	../build/main.o \
 	../build/solution.o \
 	../build/student.o \
@@ -45,6 +46,8 @@ all: $(TARGET)
 ../build/assignment.o: ../src/assignment.cpp ../src/assignment.hpp ../src/id.hpp makefile
 
 ../build/database.o: ../src/database.cpp ../src/assignment.hpp ../src/database.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
+
+../build/html_gen.o: ../src/html_gen.cpp ../src/assignment.hpp ../src/database.hpp ../src/html_gen.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
 
 ../build/main.o: ../src/main.cpp ../src/assignment.hpp ../src/database.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
 
