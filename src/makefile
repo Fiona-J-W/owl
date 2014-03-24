@@ -19,6 +19,7 @@ OBJECTS = \
 	../build/solution.o \
 	../build/student.o \
 	../build/task.o \
+	../build/print.o \
 
 
 
@@ -43,17 +44,19 @@ all: $(TARGET)
 #Dependencies:
 
 
-../build/assignment.o: ../src/assignment.cpp ../src/assignment.hpp ../src/id.hpp makefile
+../build/assignment.o: ../src/core/assignment.cpp ../src/core/assignment.hpp ../src/core/id.hpp makefile
 
-../build/database.o: ../src/database.cpp ../src/assignment.hpp ../src/database.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
+../build/database.o: ../src/core/database.cpp ../src/core/assignment.hpp ../src/core/database.hpp ../src/core/id.hpp ../src/core/reference.hpp ../src/core/solution.hpp ../src/core/student.hpp ../src/core/task.hpp ../src/yoga/format.hpp ../src/yoga/macros.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp ../src/yoga/yoga.hpp makefile
 
-../build/html_gen.o: ../src/html_gen.cpp ../src/assignment.hpp ../src/database.hpp ../src/html_gen.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
+../build/html_gen.o: ../src/core/html_gen.cpp ../src/core/assignment.hpp ../src/core/database.hpp ../src/core/html_gen.hpp ../src/core/id.hpp ../src/core/reference.hpp ../src/core/solution.hpp ../src/core/student.hpp ../src/core/task.hpp ../src/html_builder/html_builder.hpp ../src/util/util.hpp ../src/yoga/format.hpp ../src/yoga/macros.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp ../src/yoga/yoga.hpp makefile
 
-../build/main.o: ../src/main.cpp ../src/assignment.hpp ../src/database.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
+../build/main.o: ../src/core/main.cpp ../src/core/assignment.hpp ../src/core/database.hpp ../src/core/html_gen.hpp ../src/core/id.hpp ../src/core/reference.hpp ../src/core/solution.hpp ../src/core/student.hpp ../src/core/task.hpp ../src/yoga/format.hpp ../src/yoga/macros.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp ../src/yoga/yoga.hpp makefile
 
-../build/solution.o: ../src/solution.cpp ../src/id.hpp ../src/solution.hpp ../src/task.hpp makefile
+../build/solution.o: ../src/core/solution.cpp ../src/core/assignment.hpp ../src/core/database.hpp ../src/core/id.hpp ../src/core/reference.hpp ../src/core/solution.hpp ../src/core/student.hpp ../src/core/task.hpp ../src/yoga/format.hpp ../src/yoga/macros.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp ../src/yoga/yoga.hpp makefile
 
-../build/student.o: ../src/student.cpp ../src/assignment.hpp ../src/database.hpp ../src/id.hpp ../src/reference.hpp ../src/solution.hpp ../src/student.hpp ../src/task.hpp makefile
+../build/student.o: ../src/core/student.cpp ../src/core/assignment.hpp ../src/core/database.hpp ../src/core/id.hpp ../src/core/reference.hpp ../src/core/solution.hpp ../src/core/student.hpp ../src/core/task.hpp ../src/yoga/format.hpp ../src/yoga/macros.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp ../src/yoga/yoga.hpp makefile
 
-../build/task.o: ../src/task.cpp ../src/task.hpp makefile
+../build/task.o: ../src/core/task.cpp ../src/core/task.hpp makefile
+
+../build/print.o: ../src/yoga/print.cpp ../src/yoga/format.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp makefile
 

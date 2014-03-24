@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Results of Max Mustermann</title>
+	</head>
+	<body>
+		<h1>Results for Max Mustermann (#1234567)</h1>
+		<p>Max Mustermann has <b>6</b> of 16 possible points, which is equivalent to <b>37.5%</b>.</p>
+		<p>The following assignments were edited:</p>
+		<ul>
+			<li>
+				Assignment #1: 6 of 16 possible points (37.5%)
+			</li>
+		</ul>
+	</body>
+</html>

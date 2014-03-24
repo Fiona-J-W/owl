@@ -12,6 +12,7 @@
 #include <cereal/archives/json.hpp>
 #include <cereal/archives/xml.hpp>
 
+#include "../yoga/yoga.hpp"
 
 
 void database::load(const std::string& filename) {
@@ -40,6 +41,7 @@ assignment& database::get_assignment(assignment_id id) {
 }
 
 student& database::get_student(student_id id) {
+	YOGA_DEBUGF("requested id: %s, students: %s", id, m_students);
 	return m_students.at(id);
 }
 
@@ -52,6 +54,7 @@ const assignment& database::get_assignment(assignment_id id) const {
 }
 
 const student& database::get_student(student_id id) const {
+	YOGA_DEBUGF("requested id: %s, students: %s", id, m_students);
 	return m_students.at(id);
 }
 

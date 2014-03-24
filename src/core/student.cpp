@@ -1,5 +1,7 @@
 #include "student.hpp"
 
+#include <algorithm>
+
 #include "database.hpp"
 
 student::student(student_id id, std::string name, std::string pseudonym,
@@ -13,4 +15,13 @@ unsigned student::current_points(const database& db) const {
 		points += db.get_solution(solution_id).total_points();
 	}
 	return points;
+}
+
+void student::add_solution(solution_id id) {
+	auto it = std::find(m_solutions.begin(), m_solutions.end(), id);
+	if (it != m_solutions.end()) {
+		throw std::invalid_argument{
+			"This solution is already markes as solved by this student"};
+	}
+	m_solutions.emplace_back(id);
 }

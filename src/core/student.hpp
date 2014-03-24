@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 #include <cstdint>
-#include <iosfwd>
+#include <ostream>
 
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp>
+
+#include "../yoga/yoga.hpp"
 
 #include "id.hpp"
 #include "reference.hpp"
@@ -26,6 +28,9 @@ public:
 	const std::string& pseudonym() const {return m_pseudonym;}
 	student_id id() const {return m_id;}
 	unsigned current_points(const database& db) const;
+	const std::vector<solution_id> solutions() const {return m_solutions;}
+	
+	void add_solution(solution_id id);
 	
 	template<class Archive>
 	void serialize(Archive & archive) {
@@ -41,5 +46,10 @@ private:
 	std::vector<student_id> m_partners;
 	std::vector<solution_id> m_solutions;
 };
+
+inline std::ostream& operator<<(std::ostream& stream, const student& s) {
+	yoga::print_to_stream_formated(stream, "student(%s, %s)", s.id(), s.name());
+	return stream;
+}
 
 #endif

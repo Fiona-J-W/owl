@@ -11,11 +11,81 @@
                 "name": "Max Mustermann",
                 "pseudonym": "MM",
                 "partners": [],
-                "solutions": []
+                "solutions": [
+                    {
+                        "id": 1
+                    }
+                ]
             }
         }
     ],
-    "solutions": [],
+    "solutions": [
+        {
+            "key": {
+                "id": 1
+            },
+            "value": {
+                "value0": {
+                    "id": 1
+                },
+                "value1": {
+                    "id": 1
+                },
+                "value2": [
+                    {
+                        "id": 1234567
+                    }
+                ],
+                "value3": [
+                    {
+                        "value0": "1",
+                        "value1": "",
+                        "value2": 1,
+                        "id": "1",
+                        "max_comment": "",
+                        "points": 1
+                    },
+                    {
+                        "value0": "2.1",
+                        "value1": "great",
+                        "value2": 5,
+                        "id": "2.1",
+                        "max_comment": "great",
+                        "points": 5
+                    }
+                ],
+                "id": {
+                    "id": 1
+                },
+                "assignment": {
+                    "id": 1
+                },
+                "solvers": [
+                    {
+                        "id": 1234567
+                    }
+                ],
+                "edited_tasks": [
+                    {
+                        "value0": "1",
+                        "value1": "",
+                        "value2": 1,
+                        "id": "1",
+                        "max_comment": "",
+                        "points": 1
+                    },
+                    {
+                        "value0": "2.1",
+                        "value1": "great",
+                        "value2": 5,
+                        "id": "2.1",
+                        "max_comment": "great",
+                        "points": 5
+                    }
+                ]
+            }
+        }
+    ],
     "assignments": [
         {
             "key": {
@@ -42,5 +112,5 @@
             }
         }
     ],
-    "highest_solution_id": 0
+    "highest_solution_id": 6
 }

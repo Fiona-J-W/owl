@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <functional>
 #include <limits>
+#include <string>
 #include <ostream>
 
 #include <cereal/cereal.hpp>
@@ -24,6 +25,10 @@ public:
 	
 	friend std::ostream& operator<<(std::ostream& stream, id val) {
 		return stream << '#' << val.m_id;
+	}
+	
+	std::string to_string() const {
+		return '#' + std::to_string(m_id);
 	}
 	
 	template<class Archive>

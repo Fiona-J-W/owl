@@ -12,9 +12,8 @@ class task {
 public:
 	task(): m_points{std::numeric_limits<unsigned>::max()} {}
 	
-	task(std::string id, unsigned points): m_id{std::move(id)}, m_points{points} {}
-	task(std::string id, std::string comment, unsigned points):
-		m_id{std::move(id)}, m_comment{std::move(comment)}, m_points{points} {}
+	task(std::string id, unsigned points, std::string comment = ""):
+		m_id{std::move(id)}, m_points{points}, m_comment{std::move(comment)} {}
 	
 	const std::string& id() const {return m_id;}
 	const std::string& comment() const {return m_comment;}
@@ -31,8 +30,8 @@ public:
 	}
 private:
 	std::string m_id;
-	std::string m_comment;
 	unsigned m_points;
+	std::string m_comment;
 };
 
 #endif

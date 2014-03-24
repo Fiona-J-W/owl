@@ -3,11 +3,15 @@
 #include <stdexcept>
 #include <sstream>
 
+#include "../yoga/yoga.hpp"
+
 #include "database.hpp"
 #include "html_gen.hpp"
 
 int main(int argc, char** argv) try {
 	if(argc != 3) return 1;
+	
+	yoga::settings::set_priority(yoga::priority::trace);
 	
 	database db{argv[1]};
 	
@@ -16,6 +20,8 @@ int main(int argc, char** argv) try {
 	//db::add_assignment(std::move(asst));
 	//student stud{student_id{1234567}, "Max Mustermann", "MM"};
 	//db::add_student(std::move(stud));
+	//add_solution(db, assignment_id{1}, std::vector<student_id>{student_id{1234567}},
+	//		std::vector<task>{task{"1", 1}, task{"2.1", 5,"great"}});
 	
 	generate_html(db, argv[2]);
 	
