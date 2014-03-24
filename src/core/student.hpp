@@ -28,7 +28,8 @@ public:
 	const std::string& pseudonym() const {return m_pseudonym;}
 	student_id id() const {return m_id;}
 	unsigned current_points(const database& db) const;
-	const std::vector<solution_id> solutions() const {return m_solutions;}
+	const std::vector<solution_id>& solutions() const {return m_solutions;}
+	const std::vector<student_id>& partners() const {return m_partners;}
 	
 	void add_solution(solution_id id);
 	

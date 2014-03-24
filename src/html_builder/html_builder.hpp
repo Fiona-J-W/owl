@@ -4,6 +4,7 @@
 #include <memory>
 #include <ostream>
 #include <string>
+#include <tuple>
 #include <utility>
 #include <vector>
 
@@ -105,41 +106,37 @@ private:
 	T m_tagname;
 };
 
-
-class html_document {
+class html_block_collection {
 public:
-	explicit html_document(std::string title): m_title{std::move(title)} {}
+	template<typename...T>
+	explicit html_block_collection(T...args) {
+		add(args...);
+	}
 	
-	html_document(html_document&&) = default;
-	html_document(const html_document& other): m_title{other.m_title} {
+	html_block_collection(html_block_collection&&) = default;
+	html_block_collection(const html_block_collection& other): m_title{other.m_title} {
 		m_elements = copy_html_elements_vec(other.m_elements);
 	}
 	
-	html_document& operator=(html_document&&) = default;
-	html_document& operator=(const html_document& other) {
+	html_block_collection& operator=(html_block_collection&&) = default;
+	html_block_collection& operator=(const html_block_collection& other) {
 		m_title = other.m_title;
 		m_elements = copy_html_elements_vec(other.m_elements);
 		return *this;
 	}
 	
-	void write_to_stream(std::ostream& stream) const {
-		stream << "<!DOCTYPE html>\n";
-		block_tag_printer<> html{stream, "html", 0};
-		{
-			block_tag_printer<> head{stream, "head", 1};
-			line_tag_printer<> title{stream, "title", 2};
-			stream << m_title;
-		}
-		block_tag_printer<> body{stream, "body", 1};
+	void write_to_stream(std::ostream& stream, unsigned depth) const {
 		for(const auto& element: m_elements) {
-			element->write_to_stream(stream, 2);
+			element->write_to_stream(stream, depth);
 		}
 	}
 	
-	template<typename Element>
-	void add(Element element) {
+	template<typename Element, typename...Tail>
+	void add(Element element, Tail...tail) {
 		m_elements.emplace_back(make_unique<html_element_impl<Element>>(std::move(element)));
+		add(std::move(tail)...);
 	}
+	void add() const {}
 	
 	template<typename Element>
 	Element& get(std::size_t index) {
@@ -153,6 +150,97 @@ public:
 private:
 	std::string m_title;
 	std::vector<std::unique_ptr<html_element_interface>> m_elements;
+};
+
+class html_document: public html_block_collection {
+public:
+	explicit html_document(std::string title): m_title{std::move(title)} {}
+	
+	html_document(html_document&&) = default;
+	html_document(const html_document& other): html_block_collection{other}, 
+		m_title{other.m_title} {}
+	
+	html_document& operator=(html_document&&) = default;
+	html_document& operator=(const html_document& other) {
+		html_block_collection::operator=(other);
+		m_title = other.m_title;
+		return *this;
+	}
+	
+	using html_block_collection::write_to_stream;
+
+	void write_to_stream(std::ostream& stream) const {
+		stream << "<!DOCTYPE html>\n";
+		block_tag_printer<> html{stream, "html", 0};
+		{
+			block_tag_printer<> head{stream, "head", 1};
+			line_tag_printer<> title{stream, "title", 2};
+			stream << m_title;
+		}
+		block_tag_printer<> body{stream, "body", 1};
+		write_to_stream(stream, 2);
+	}
+	
+private:
+	std::string m_title;
+};
+
+template<std::size_t Index, std::size_t MaxIndex, typename...Elements>
+struct tuple_printer{
+	static void print(std::ostream& stream, const std::tuple<Elements...>& tuple,
+			const std::string& tagname, unsigned depth) {
+		{
+			block_tag_printer<std::string> tag{stream, tagname, depth};
+			std::get<Index>(tuple).write_to_stream(stream, depth + 1);
+		}
+		tuple_printer<Index + 1, MaxIndex, Elements...>::print(stream, tuple, tagname, depth);
+	}
+};
+
+template<std::size_t MaxIndex, typename...Elements>
+struct tuple_printer<MaxIndex, MaxIndex, Elements...>{
+	static void print(std::ostream&, const std::tuple<Elements...>&,const std::string&, unsigned) {}
+};
+
+
+template<typename...Columns>
+class html_table {
+	public:
+	static const std::size_t column_count = sizeof...(Columns);
+	
+	html_table(const std::array<std::string, column_count>& headings):
+		m_headings(headings) {}
+	
+	void add_row(Columns...data) {
+		m_rows.emplace_back(std::move(data)...);
+	}
+	
+	void write_to_stream(std::ostream& stream, unsigned depth) const {
+		print_indent(stream, depth);
+		stream << "<table border=\"1\">\n";
+		{
+			block_tag_printer<> thead_tag{stream, "thead", depth + 1};
+			block_tag_printer<> tr_tag{stream, "tr", depth + 2};
+			for(const auto& heading: m_headings) {
+				line_tag_printer<> th_tag{stream, "th", depth + 3};
+				stream << heading;
+			}
+		}
+		{
+			block_tag_printer<> tbody_tag{stream, "tbody", depth + 1};
+			for(const auto& row: m_rows) {
+				block_tag_printer<> tr_tag{stream, "tr", depth + 2};
+				tuple_printer<0, column_count, Columns...>::print(
+						stream, row, "td", depth + 3);
+				//print_row<0>(stream, row, depth + 3);
+			}
+		}
+		print_indent(stream, depth);
+		stream << "</table>\n";
+	}
+private:
+	std::array<std::string, column_count> m_headings;
+	std::vector<std::tuple<Columns...>> m_rows;
 };
 
 

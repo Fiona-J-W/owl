@@ -24,7 +24,6 @@ public:
 	
 	template<class Archive>
 	void serialize(Archive & archive) {
-		archive(m_id, m_comment, m_points);
 		archive(cereal::make_nvp("id", m_id), cereal::make_nvp("max_comment", m_comment),
 				cereal::make_nvp("points", m_points));
 	}

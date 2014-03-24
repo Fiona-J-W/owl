@@ -33,12 +33,14 @@ public:
 	std::vector<reference<student>> get_student_list();
 	
 	unsigned max_total_points() const;
+	const std::vector<std::pair<double, std::string>>& achievments() const {return m_achievements;}
 	
 	solution_id new_solution_id();
 private:
 	std::unordered_map<student_id, student> m_students;
 	std::unordered_map<solution_id, solution> m_solutions;
 	std::unordered_map<assignment_id, assignment> m_assignments;
+	std::vector<std::pair<double, std::string>> m_achievements;
 	std::uint32_t m_highest_solution_id = 0;
 };
 

@@ -21,10 +21,10 @@ public:
 	assignment_id assignment() const {return m_assignment;}
 	solution_id id() const {return m_id;}
 	unsigned total_points() const;
+	const std::vector<task>& editied_tasks() const {return m_edited_tasks;}
 	
 	template<class Archive>
 	void serialize(Archive & archive) {
-		archive(m_id, m_assignment, m_solvers, m_edited_tasks);
 		archive(cereal::make_nvp("id", m_id), cereal::make_nvp("assignment", m_assignment),
 				cereal::make_nvp("solvers", m_solvers),
 				cereal::make_nvp("edited_tasks", m_edited_tasks));

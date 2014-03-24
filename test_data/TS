@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Results of Max Mustermann</title>
+		<title>Results of Twilight Sparkle</title>
 	</head>
 	<body>
-		<h1>Results of Max Mustermann (#1234567)</h1>
-		<p>Max Mustermann has <b>19</b> of 36 possible points, which is equivalent to <b>52.7778%</b>.</p>
-		<p>Max Mustermann has one partner: Erika Mustermann (#1929522).</p>
+		<h1>Results of Twilight Sparkle (#7777777)</h1>
+		<p>Twilight Sparkle has <b>36</b> of 36 possible points, which is equivalent to <b>100%</b>.</p>
+		<p>Twilight Sparkle has no partner.</p>
 		<p>The following achievments can be unlocked:</p>
 		<ul>
 			<li>
@@ -19,7 +19,7 @@
 		<p>The following assignments were edited:</p>
 		<ul>
 			<li>
-				<p>Assignment #1: 7 of 16 possible points (43.75%)</p>
+				<p>Assignment #1: 16 of 16 possible points (100%)</p>
 				<table border="1">
 					<thead>
 						<tr>
@@ -45,10 +45,10 @@
 								2.1
 							</td>
 							<td>
-								<b>4</b>/5 (80%)
+								<b>5</b>/5 (100%)
 							</td>
 							<td>
-								good
+								
 							</td>
 						</tr>
 						<tr>
@@ -56,17 +56,17 @@
 								2.2
 							</td>
 							<td>
-								<b>2</b>/10 (20%)
+								<b>10</b>/10 (100%)
 							</td>
 							<td>
-								terrible. Please study this topic.
+								
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</li>
 			<li>
-				<p>Assignment #2: 12 of 20 possible points (60%)</p>
+				<p>Assignment #2: 20 of 20 possible points (100%)</p>
 				<table border="1">
 					<thead>
 						<tr>
@@ -81,7 +81,18 @@
 								1.1
 							</td>
 							<td>
-								<b>1</b>/2 (50%)
+								<b>2</b>/2 (100%)
+							</td>
+							<td>
+								
+							</td>
+						</tr>
+						<tr>
+							<td>
+								1.2
+							</td>
+							<td>
+								<b>2</b>/2 (100%)
 							</td>
 							<td>
 								
@@ -92,7 +103,7 @@
 								2
 							</td>
 							<td>
-								<b>4</b>/7 (57.1429%)
+								<b>7</b>/7 (100%)
 							</td>
 							<td>
 								
@@ -103,7 +114,7 @@
 								3
 							</td>
 							<td>
-								<b>7</b>/9 (77.7778%)
+								<b>9</b>/9 (100%)
 							</td>
 							<td>
 								

@@ -7,6 +7,7 @@
 #include <vector>
 
 #include <cereal/cereal.hpp>
+#include <cereal/types/utility.hpp>
 #include <cereal/types/unordered_map.hpp>
 #include <cereal/types/vector.hpp>
 #include <cereal/archives/json.hpp>
@@ -23,7 +24,8 @@ void database::load(const std::string& filename) {
 	cereal::JSONInputArchive archive{file};
 	archive(cereal::make_nvp("students", m_students), cereal::make_nvp("solutions", m_solutions), 
 			cereal::make_nvp("assignments", m_assignments),
-			cereal::make_nvp("highest_solution_id", m_highest_solution_id));
+			cereal::make_nvp("highest_solution_id", m_highest_solution_id),
+			cereal::make_nvp("achievements", m_achievements));
 }
 void database::save(const std::string& filename) {
 	std::ofstream file{filename};
@@ -33,7 +35,8 @@ void database::save(const std::string& filename) {
 	cereal::JSONOutputArchive archive{file};
 	archive(cereal::make_nvp("students", m_students), cereal::make_nvp("solutions", m_solutions), 
 			cereal::make_nvp("assignments", m_assignments),
-			cereal::make_nvp("highest_solution_id", m_highest_solution_id));
+			cereal::make_nvp("highest_solution_id", m_highest_solution_id),
+			cereal::make_nvp("achievements", m_achievements));
 }
 
 assignment& database::get_assignment(assignment_id id) {
