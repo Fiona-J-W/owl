@@ -27,6 +27,27 @@
         },
         {
             "key": {
+                "id": 7777777
+            },
+            "value": {
+                "id": {
+                    "id": 7777777
+                },
+                "name": "Twilight Sparkle",
+                "pseudonym": "TS",
+                "partners": [],
+                "solutions": [
+                    {
+                        "id": 3
+                    },
+                    {
+                        "id": 4
+                    }
+                ]
+            }
+        },
+        {
+            "key": {
                 "id": 1929522
             },
             "value": {
@@ -49,75 +70,19 @@
                     }
                 ]
             }
-        },
-        {
-            "key": {
-                "id": 7777777
-            },
-            "value": {
-                "id": {
-                    "id": 7777777
-                },
-                "name": "Twilight Sparkle",
-                "pseudonym": "TS",
-                "partners": [],
-                "solutions": [
-                    {
-                        "id": 3
-                    },
-                    {
-                        "id": 4
-                    }
-                ]
-            }
         }
     ],
     "solutions": [
         {
             "key": {
-                "id": 3
+                "id": 2
             },
             "value": {
                 "id": {
-                    "id": 3
+                    "id": 2
                 },
                 "assignment": {
-                    "id": 1
-                },
-                "solvers": [
-                    {
-                        "id": 7777777
-                    }
-                ],
-                "edited_tasks": [
-                    {
-                        "id": "1",
-                        "max_comment": "",
-                        "points": 1
-                    },
-                    {
-                        "id": "2.1",
-                        "max_comment": "",
-                        "points": 5
-                    },
-                    {
-                        "id": "2.2",
-                        "max_comment": "",
-                        "points": 10
-                    }
-                ]
-            }
-        },
-        {
-            "key": {
-                "id": 1
-            },
-            "value": {
-                "id": {
-                    "id": 1
-                },
-                "assignment": {
-                    "id": 1
+                    "id": 2
                 },
                 "solvers": [
                     {
@@ -129,19 +94,19 @@
                 ],
                 "edited_tasks": [
                     {
-                        "id": "1",
+                        "id": "1.1",
                         "max_comment": "",
                         "points": 1
                     },
                     {
-                        "id": "2.1",
-                        "max_comment": "good",
+                        "id": "2",
+                        "max_comment": "",
                         "points": 4
                     },
                     {
-                        "id": "2.2",
-                        "max_comment": "terrible. Please study this topic.",
-                        "points": 2
+                        "id": "3",
+                        "max_comment": "",
+                        "points": 7
                     }
                 ]
             }
@@ -188,14 +153,14 @@
         },
         {
             "key": {
-                "id": 2
+                "id": 1
             },
             "value": {
                 "id": {
-                    "id": 2
+                    "id": 1
                 },
                 "assignment": {
-                    "id": 2
+                    "id": 1
                 },
                 "solvers": [
                     {
@@ -207,49 +172,60 @@
                 ],
                 "edited_tasks": [
                     {
-                        "id": "1.1",
+                        "id": "1",
                         "max_comment": "",
                         "points": 1
                     },
                     {
-                        "id": "2",
-                        "max_comment": "",
+                        "id": "2.1",
+                        "max_comment": "good",
                         "points": 4
                     },
                     {
-                        "id": "3",
+                        "id": "2.2",
+                        "max_comment": "terrible. Please study this topic.",
+                        "points": 2
+                    }
+                ]
+            }
+        },
+        {
+            "key": {
+                "id": 3
+            },
+            "value": {
+                "id": {
+                    "id": 3
+                },
+                "assignment": {
+                    "id": 1
+                },
+                "solvers": [
+                    {
+                        "id": 7777777
+                    }
+                ],
+                "edited_tasks": [
+                    {
+                        "id": "1",
                         "max_comment": "",
-                        "points": 7
+                        "points": 1
+                    },
+                    {
+                        "id": "2.1",
+                        "max_comment": "",
+                        "points": 5
+                    },
+                    {
+                        "id": "2.2",
+                        "max_comment": "",
+                        "points": 10
                     }
                 ]
             }
         }
     ],
     "assignments": [
-        {
-            "key": {
-                "id": 1
-            },
-            "value": {
-                "id": {
-                    "id": 1
-                },
-                "max_points": [
-                    {
-                        "key": "1",
-                        "value": 1
-                    },
-                    {
-                        "key": "2.1",
-                        "value": 5
-                    },
-                    {
-                        "key": "2.2",
-                        "value": 10
-                    }
-                ]
-            }
-        },
         {
             "key": {
                 "id": 2
@@ -274,6 +250,30 @@
                     {
                         "key": "3",
                         "value": 9
+                    }
+                ]
+            }
+        },
+        {
+            "key": {
+                "id": 1
+            },
+            "value": {
+                "id": {
+                    "id": 1
+                },
+                "max_points": [
+                    {
+                        "key": "1",
+                        "value": 1
+                    },
+                    {
+                        "key": "2.1",
+                        "value": 5
+                    },
+                    {
+                        "key": "2.2",
+                        "value": 10
                     }
                 ]
             }
