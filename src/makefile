@@ -45,7 +45,7 @@ all: $(TARGET)
 #Dependencies:
 
 
-../build/assignment.o: ../src/core/assignment.cpp ../src/core/assignment.hpp ../src/core/id.hpp ../src/core/text_reader.hpp makefile
+../build/assignment.o: ../src/core/assignment.cpp ../src/core/assignment.hpp ../src/core/id.hpp ../src/core/task.hpp ../src/core/text_reader.hpp makefile
 
 ../build/database.o: ../src/core/database.cpp ../src/core/assignment.hpp ../src/core/database.hpp ../src/core/id.hpp ../src/core/reference.hpp ../src/core/solution.hpp ../src/core/student.hpp ../src/core/task.hpp ../src/yoga/format.hpp ../src/yoga/macros.hpp ../src/yoga/print.hpp ../src/yoga/util.hpp ../src/yoga/yoga.hpp makefile
 

@@ -15,8 +15,20 @@ void require(bool b, const char* msg = "") {
 	}
 }
 
+void print_usage() {
+	std::cout << "Usage: owl <database> <output-directory> <command> <command-options>\n"
+		"Where command is one of the following:\n"
+		"\tadd_solution <assignment-id> <students>\n"
+		"\tadd_assignment\n"
+		"\tadd_student <student-id> <name> <pseudonym>\n"
+		"\tmake_team <students>\n";
+}
+
 int main(int argc, char** argv) try {
-	if(argc < 3) return 1;
+	if(argc < 3) {
+		print_usage();
+		return 1;
+	}
 	
 	
 	//yoga::settings::set_priority(yoga::priority::trace);
@@ -25,28 +37,25 @@ int main(int argc, char** argv) try {
 	if(argc >= 4) {
 		std::string command{argv[3]};
 		if (command == "add_solution") {
-			throw std::runtime_error{"not yet implemented"};
-			require(argc == 5);
+			require(argc == 6, "invalid number of arguments");
 			assignment_id asst_id{argv[4]};
 			add_solution(
 					db,
 					asst_id,
 					db.parse_students_string(argv[5]),
-					//std::vector<task>{task{"1", 1}, task{"2.1", 5,"great"}}
-					std::vector<task>{}
-					);
+					read_tasks(db.get_assignment(asst_id)));
 			
 		} else if (command == "add_assignment") {
 			db.add_assignment(create_assignment());
 			
 		} else if (command =="add_student") {
-			require(argc == 7);
+			require(argc == 7, "invalid number of arguments");
 			db.add_student(student{
 					student_id{argv[4]},
 					argv[5], argv[6]});
 			
 		} else if (command == "make_team") {
-			require(argc == 5);
+			require(argc == 5, "invalid number of arguments");
 			db.make_team(db.parse_students_string(argv[4]));
 		} else {
 			throw std::invalid_argument{"invalid operation"};

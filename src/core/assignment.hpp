@@ -9,6 +9,7 @@
 #include <cereal/types/map.hpp>
 
 #include "id.hpp"
+#include "task.hpp"
 
 class assignment {
 public:
@@ -32,5 +33,7 @@ private:
 };
 
 assignment create_assignment();
+
+std::vector<task> read_tasks(const assignment& asst, const std::string& comment = "");
 
 #endif
