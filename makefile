@@ -7,7 +7,7 @@
 
 
 CXX ?= g++
-FLAGS +=  -Wall -Wextra -pedantic -std=c++11 
+FLAGS +=  -Wall -Wextra -pedantic -std=c++11 -O3 -mtune=native -Werror -static 
 LIBS += -lboost_filesystem -lboost_system 
 INCLUDES += 
 TARGET = bin/owl

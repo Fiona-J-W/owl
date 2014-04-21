@@ -15,7 +15,7 @@ htb::html_table<htb::plaintext, htb::plaintext, htb::plaintext> make_solution_ta
 void generate_html(const database& db, const std::string& basedir) {
 	auto students = db.get_student_list();
 	for(const auto& student: students) {
-		generate_userpage(*student, db, basedir + student->pseudonym());
+		generate_userpage(*student, db, basedir + student->pseudonym() + ".html");
 	}
 }
 
