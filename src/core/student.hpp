@@ -32,6 +32,7 @@ public:
 	const std::vector<student_id>& partners() const {return m_partners;}
 	
 	void add_solution(solution_id id);
+	void add_partner(student_id id) {m_partners.push_back(id);}
 	
 	template<class Archive>
 	void serialize(Archive & archive) {

@@ -12,7 +12,8 @@
 template<class> class id {
 public:
 	id(): m_id{std::numeric_limits<std::uint32_t>::max()} {}
-	explicit id(std::uint32_t id): m_id{id} {}
+	explicit id(std::uint32_t id) noexcept: m_id{id} {}
+	explicit id(const std::string str): m_id{static_cast<std::uint32_t>(std::stoul(str))} {}
 	
 	friend bool operator==(id l, id r) {return l.m_id == r.m_id;}
 	friend bool operator!=(id l, id r) {return l.m_id != r.m_id;}

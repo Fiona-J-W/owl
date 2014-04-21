@@ -18,6 +18,7 @@ public:
 	assignment_id id() const {return m_id;}
 	unsigned max_total_points() const;
 	unsigned points_for(const std::string& id) const {return m_max_points.at(id);}
+	const std::map<std::string, unsigned>& point_map() const {return m_max_points;}
 	
 	template<class Archive>
 	void serialize(Archive & archive) {
@@ -29,5 +30,7 @@ private:
 	std::map<std::string, unsigned> m_max_points;
 	
 };
+
+assignment create_assignment();
 
 #endif

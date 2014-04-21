@@ -36,6 +36,9 @@ public:
 	const std::vector<std::pair<double, std::string>>& achievments() const {return m_achievements;}
 	
 	solution_id new_solution_id();
+	
+	std::vector<student_id> parse_students_string(const std::string& str) const;
+	void make_team(const std::vector<student_id>& students);
 private:
 	std::unordered_map<student_id, student> m_students;
 	std::unordered_map<solution_id, solution> m_solutions;

@@ -1,7 +1,10 @@
 #include "solution.hpp"
 
+#include <sstream>
+
 #include "database.hpp"
 #include "student.hpp"
+#include "text_reader.hpp"
 
 solution::solution(assignment_id a_id, solution_id id, std::vector<student_id> solvers,
 		std::vector<task> editied_tasks):

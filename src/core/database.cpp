@@ -112,3 +112,38 @@ solution_id database::new_solution_id() {
 	return solution_id{++m_highest_solution_id};
 }
 
+std::vector<student_id> database::parse_students_string(const std::string& str) const {
+	std::istringstream stream{str};
+	std::vector<student_id> return_vec;
+	std::string line;
+	student_id last_id{0};
+	while(std::getline(stream, line, ',')) {
+		if(line.empty()) {
+			continue;
+		} else if (line == "..." || line == "…") {
+			if(last_id == student_id{0}) {
+				throw std::runtime_error{"elipses must directly follow a valid student-id"};
+			}
+			const auto& partners = get_student(last_id).partners();
+			std::copy(partners.begin(), partners.end(), std::back_inserter(return_vec));
+			last_id = student_id{0};
+		} else {
+			student_id id{line};
+			return_vec.push_back(id);
+			last_id = id;
+		}
+	}
+	std::sort(return_vec.begin(), return_vec.end());
+	return_vec.erase(std::unique(return_vec.begin(), return_vec.end()), return_vec.end());
+	return return_vec;
+}
+
+
+void database::make_team(const std::vector<student_id>& students) {
+	for(std::size_t i = 0; i < students.size(); ++i) {
+		for(auto j = i; j < students.size(); ++j) {
+			get_student(students[i]).add_partner(students[j]);
+			get_student(students[j]).add_partner(students[i]);
+		}
+	}
+}
