@@ -57,6 +57,8 @@ int main(int argc, char** argv) try {
 		} else if (command == "make_team") {
 			require(argc == 5, "invalid number of arguments");
 			db.make_team(db.parse_students_string(argv[4]));
+		} else if (command == "scrample_pseudonyms") {
+			db.scrample_pseudonyms();
 		} else {
 			throw std::invalid_argument{"invalid operation"};
 		}

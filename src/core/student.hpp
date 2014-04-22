@@ -26,6 +26,7 @@ public:
 	
 	const std::string& name() const {return m_name;}
 	const std::string& pseudonym() const {return m_pseudonym;}
+	void set_pseudonym(std::string new_pseudonym) {m_pseudonym = std::move(new_pseudonym);}
 	student_id id() const {return m_id;}
 	unsigned current_points(const database& db) const;
 	const std::vector<solution_id>& solutions() const {return m_solutions;}

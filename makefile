@@ -16,6 +16,7 @@ OBJECTS = \
 	build/database.o \
 	build/html_gen.o \
 	build/main.o \
+	build/random.o \
 	build/solution.o \
 	build/student.o \
 	build/task.o \
@@ -47,11 +48,13 @@ all: $(TARGET)
 
 build/assignment.o: src/core/assignment.cpp src/core/assignment.hpp src/core/id.hpp src/core/task.hpp src/core/text_reader.hpp makefile
 
-build/database.o: src/core/database.cpp src/core/assignment.hpp src/core/database.hpp src/core/id.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
+build/database.o: src/core/database.cpp src/core/assignment.hpp src/core/database.hpp src/core/id.hpp src/core/random.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
 
 build/html_gen.o: src/core/html_gen.cpp src/core/assignment.hpp src/core/database.hpp src/core/html_gen.hpp src/core/id.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/html_builder/html_builder.hpp src/util/util.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
 
 build/main.o: src/core/main.cpp src/core/assignment.hpp src/core/database.hpp src/core/html_gen.hpp src/core/id.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/core/text_reader.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
+
+build/random.o: src/core/random.cpp src/core/random.hpp makefile
 
 build/solution.o: src/core/solution.cpp src/core/assignment.hpp src/core/database.hpp src/core/id.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/core/text_reader.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
 

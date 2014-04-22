@@ -15,6 +15,8 @@
 
 #include "../yoga/yoga.hpp"
 
+#include "random.hpp"
+
 
 void database::load(const std::string& filename) {
 	std::ifstream file{filename};
@@ -145,5 +147,11 @@ void database::make_team(const std::vector<student_id>& students) {
 			get_student(students[i]).add_partner(students[j]);
 			get_student(students[j]).add_partner(students[i]);
 		}
+	}
+}
+
+void database::scrample_pseudonyms() {
+	for(auto& student: m_students) {
+		student.second.set_pseudonym(random_pseudonym());
 	}
 }
