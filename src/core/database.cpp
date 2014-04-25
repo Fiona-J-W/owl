@@ -143,7 +143,7 @@ std::vector<student_id> database::parse_students_string(const std::string& str) 
 
 void database::make_team(const std::vector<student_id>& students) {
 	for(std::size_t i = 0; i < students.size(); ++i) {
-		for(auto j = i; j < students.size(); ++j) {
+		for(auto j = i + 1; j < students.size(); ++j) {
 			get_student(students[i]).add_partner(students[j]);
 			get_student(students[j]).add_partner(students[i]);
 		}

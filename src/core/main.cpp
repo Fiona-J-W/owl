@@ -22,7 +22,8 @@ void print_usage() {
 		"\tadd_assignment\n"
 		"\tadd_student <student-id> <name> <pseudonym>\n"
 		"\tmake_team <students>\n"
-		"\t scrample_pseudonyms\n";
+		"\tscrample_pseudonyms\n"
+		"\tprint_students\n";
 }
 
 int main(int argc, char** argv) try {
@@ -60,6 +61,12 @@ int main(int argc, char** argv) try {
 			db.make_team(db.parse_students_string(argv[4]));
 		} else if (command == "scrample_pseudonyms") {
 			db.scrample_pseudonyms();
+		} else if (command == "print_students") {
+			for(const auto& stud: db.get_student_list()) {
+				std::cout << "\n\n===========================================\n\n";
+				print_overview(*stud);
+			}
+			std::cout << "\n\n===========================================\n\n";
 		} else {
 			std::cerr << "Error: invalid operation\n";
 			return 1;

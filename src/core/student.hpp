@@ -5,6 +5,7 @@
 #include <vector>
 #include <cstdint>
 #include <ostream>
+#include <iostream>
 
 #include <cereal/cereal.hpp>
 #include <cereal/types/vector.hpp>
@@ -54,5 +55,7 @@ inline std::ostream& operator<<(std::ostream& stream, const student& s) {
 	yoga::print_to_stream_formated(stream, "student(%s, %s)", s.id(), s.name());
 	return stream;
 }
+
+void print_overview(const student& stud, std::ostream& stream = std::cout);
 
 #endif

@@ -25,3 +25,11 @@ void student::add_solution(solution_id id) {
 	}
 	m_solutions.emplace_back(id);
 }
+
+void print_overview(const student& stud, std::ostream& stream) {
+	stream
+		<< "name    : " << stud.name() << '\n'
+		<< "mat     : " << stud.id() << '\n'
+		<< "overview: <base_url>" << stud.pseudonym() << ".html\n"
+		<< "<further_notes>\n\n";
+}
