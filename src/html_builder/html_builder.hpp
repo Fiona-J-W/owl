@@ -174,6 +174,7 @@ public:
 		block_tag_printer<> html{stream, "html", 0};
 		{
 			block_tag_printer<> head{stream, "head", 1};
+			stream << "\t\t<meta charset=\"utf-8\">\n";
 			line_tag_printer<> title{stream, "title", 2};
 			stream << m_title;
 		}

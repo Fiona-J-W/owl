@@ -32,8 +32,9 @@ int main(int argc, char** argv) try {
 		return 1;
 	}
 	
-	
 	//yoga::settings::set_priority(yoga::priority::trace);
+	
+	bool db_save_required = false;
 	database db{argv[1]};
 	
 	if(argc >= 4) {
@@ -46,21 +47,26 @@ int main(int argc, char** argv) try {
 					asst_id,
 					db.parse_students_string(argv[5]),
 					read_tasks(db.get_assignment(asst_id)));
+			db_save_required = true;
 			
 		} else if (command == "add_assignment") {
 			db.add_assignment(create_assignment());
+			db_save_required = true;
 			
 		} else if (command =="add_student") {
 			require(argc == 7, "invalid number of arguments");
 			db.add_student(student{
 					student_id{argv[4]},
 					argv[5], argv[6]});
+			db_save_required = true;
 			
 		} else if (command == "make_team") {
 			require(argc == 5, "invalid number of arguments");
 			db.make_team(db.parse_students_string(argv[4]));
+			db_save_required = true;
 		} else if (command == "scrample_pseudonyms") {
 			db.scrample_pseudonyms();
+			db_save_required = true;
 		} else if (command == "print_students") {
 			for(const auto& stud: db.get_student_list()) {
 				std::cout << "\n\n===========================================\n\n";
@@ -73,9 +79,11 @@ int main(int argc, char** argv) try {
 		}
 	}
 	
-	
 	generate_html(db, argv[2]);
-	db.save(argv[1]);
+	
+	if(db_save_required) {
+		db.save(argv[1]);
+	}
 } catch(std::runtime_error& e) {
 	std::cerr << "Error: " << e.what() << '\n';
 	return 1;
