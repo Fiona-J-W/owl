@@ -30,3 +30,12 @@ solution_id add_solution(database& db, assignment_id assignment, std::vector<stu
 	db.add_solution(std::move(tmp));
 	return id;
 }
+
+const task& solution::get_task(const std::string& id) const {
+	auto it = std::find_if(begin(m_edited_tasks), end(m_edited_tasks),
+			[&](const task& t) {return t.id() == id;});
+	if (it != end(m_edited_tasks)) {
+		return *it;
+	}
+	throw std::runtime_error{"no such task"};
+}

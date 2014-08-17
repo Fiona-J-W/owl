@@ -11,6 +11,8 @@
 #include "id.hpp"
 #include "task.hpp"
 
+class database;
+
 class assignment {
 public:
 	assignment() = default;
@@ -26,6 +28,7 @@ public:
 		archive(cereal::make_nvp("id", m_id), cereal::make_nvp("max_points", m_max_points));
 	}
 	
+	void print_results(const std::vector<student_id>& students, database& db) const;
 private:
 	assignment_id m_id;
 	std::map<std::string, unsigned> m_max_points;

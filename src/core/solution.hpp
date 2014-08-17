@@ -23,6 +23,8 @@ public:
 	unsigned total_points() const;
 	const std::vector<task>& editied_tasks() const {return m_edited_tasks;}
 	
+	const task& get_task(const std::string& id) const;
+	
 	template<class Archive>
 	void serialize(Archive & archive) {
 		archive(cereal::make_nvp("id", m_id), cereal::make_nvp("assignment", m_assignment),

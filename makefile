@@ -7,7 +7,7 @@
 
 
 CXX ?= g++
-FLAGS +=  -Wall -Wextra -pedantic -std=c++11 -O3 -mtune=native -Werror -static 
+FLAGS +=  -Wall -Wextra -Wpedantic -std=c++1y -O3 -mtune=native -Werror -DNDEBUG 
 LIBS += -lboost_filesystem -lboost_system 
 INCLUDES += 
 TARGET = bin/owl
@@ -46,7 +46,7 @@ all: $(TARGET)
 #Dependencies:
 
 
-build/assignment.o: src/core/assignment.cpp src/core/assignment.hpp src/core/id.hpp src/core/task.hpp src/core/text_reader.hpp makefile
+build/assignment.o: src/core/assignment.cpp src/core/assignment.hpp src/core/database.hpp src/core/id.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/core/text_reader.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
 
 build/database.o: src/core/database.cpp src/core/assignment.hpp src/core/database.hpp src/core/id.hpp src/core/random.hpp src/core/reference.hpp src/core/solution.hpp src/core/student.hpp src/core/task.hpp src/yoga/format.hpp src/yoga/macros.hpp src/yoga/print.hpp src/yoga/util.hpp src/yoga/yoga.hpp makefile
 

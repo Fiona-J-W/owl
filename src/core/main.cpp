@@ -23,6 +23,7 @@ void print_usage() {
 		"\tadd_student <student-id> <name> <pseudonym>\n"
 		"\tmake_team <students>\n"
 		"\tscrample_pseudonyms\n"
+		"\tprint_results <assignment_id>\n"
 		"\tprint_students\n";
 }
 
@@ -73,6 +74,13 @@ int main(int argc, char** argv) try {
 				print_overview(*stud);
 			}
 			std::cout << "\n\n===========================================\n\n";
+		} else if (command == "print_results") {
+			require(argc == 5, "invalid number of arguments");
+			auto tmp = std::stoul(argv[4]);
+			auto id = assignment_id{static_cast<std::uint32_t>(tmp)};
+			const auto& assignment = db.get_assignment(id);
+			assignment.print_results(db.get_student_id_list(), db);
+			
 		} else {
 			std::cerr << "Error: invalid operation\n";
 			return 1;
@@ -87,4 +95,6 @@ int main(int argc, char** argv) try {
 } catch(std::runtime_error& e) {
 	std::cerr << "Error: " << e.what() << '\n';
 	return 1;
+} catch(std::exception& e) {
+	std::cerr << "FATAL ERROR: " << e.what() << '\n';
 }

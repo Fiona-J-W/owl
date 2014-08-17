@@ -102,6 +102,14 @@ std::vector<reference<student>> database::get_student_list() {
 	return returnlist;
 }
 
+std::vector<student_id> database::get_student_id_list() const {
+	std::vector<student_id> returnvec;
+	for(auto&& student: m_students) {
+		returnvec.push_back(student.first);
+	}
+	return returnvec;
+}
+
 unsigned database::max_total_points() const {
 	unsigned points = 0;
 	for(const auto& x: m_assignments) {

@@ -9,6 +9,7 @@
 
 #include <boost/algorithm/string/trim.hpp>
 
+#include "database.hpp"
 #include "text_reader.hpp"
 #include "task.hpp"
 
@@ -117,4 +118,28 @@ std::tuple<bool, std::string> next_line(std::istream& stream) {
 		return std::make_tuple(true, std::move(line));
 	}
 	return std::make_tuple(false, "");
+}
+
+
+void assignment::print_results(const std::vector<student_id>& students, database& db) const {
+	std::cout << "\"Name\", \"id\", ";
+	for(auto&& task: m_max_points) {
+		std::cout << '"' << task.first << "\", ";
+	}
+	std::cout << '\n';
+	for (auto stud: students) {
+		const auto& student = db.get_student(stud);
+		const auto& solutions = student.solutions();
+		auto it = std::find_if(begin(solutions), end(solutions),
+		                       [&](const auto& sol) {return db.get_solution(sol).assignment() == m_id;});
+		if (it == end(solutions)) {
+			continue;
+		}
+		const auto& solution = db.get_solution(*it);
+		std::cout << '"' << student.name() << "\", \"" << student.id() << "\", ";
+		for(auto&& task: m_max_points) {
+			std::cout << '"' << solution.get_task(task.first).points() << "\", ";
+		}
+		std::cout << '\n';
+	}
 }

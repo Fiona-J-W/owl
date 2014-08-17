@@ -31,6 +31,7 @@ public:
 	
 	std::vector<reference<const student>> get_student_list() const;
 	std::vector<reference<student>> get_student_list();
+	std::vector<student_id> get_student_id_list() const;
 	
 	unsigned max_total_points() const;
 	const std::vector<std::pair<double, std::string>>& achievments() const {return m_achievements;}
